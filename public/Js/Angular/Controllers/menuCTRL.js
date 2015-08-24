@@ -41,6 +41,7 @@ app.controller('menuCTRL', function($scope,menuFactory) {
 
     /********************************************     common initial setting     *****************************************/
     var HTL_ID = 2;
+    $scope.cmbSelected = null;
     getServiceTypes();
     getPayMethods();
     getMenu(HTL_ID);

@@ -28,7 +28,7 @@
             <div class="card-body">
                 <!-- 服务照片 -->
                 <div class="card-img">
-                    <img src="images/combo/{{combo.CMB_PIC}}">
+                    <img src="images/combo/{{combo.CMB_PIC}}" />
                 </div>
                 <!-- 服务名称 -->
                 <div class="card-text">
@@ -56,7 +56,7 @@
                     <div class="modal-body">
                         <div>
                             <!-- 服务照片 -->
-                            <img src="{{'images/combo/'+cmbSelected.CMB_PIC}}">
+                            <img src="images/combo/{{cmbSelected.CMB_PIC}}" />
                             <!-- 服务名称 -->
                             <h3>{{cmbSelected.CMB_NM}}</h3>
                             <!-- 提供商 -->
