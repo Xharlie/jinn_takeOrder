@@ -70,6 +70,7 @@ class MenuController extends Controller
     {
         $order = $request->input('order');
         $transaction = $request->input('transaction');
+        $yunpianInfo = $request->input('yunpianInfo');
         try {
             DB::beginTransaction();   //////  Important !! TRANSACTION Begin!!!
             $TRN_ID = DB::table('Transaction_Info')->insertGetId($transaction);
@@ -83,9 +84,12 @@ class MenuController extends Controller
             return response()->json('数据库错误'+$message);
         }finally{
             DB::commit();
+            Yunpian::notifyFrontDeskOrder($order['ORDR_ID'],$yunpianInfo['HTL_NM'],$order['HTL_ID'],$transaction['RM_ID'],
+                $order['ORDR_TSTMP'],$order['CMB_ID'],$yunpianInfo['CMB_NM'],$order['AMNT']);
             return response()->json('成功');
         }
     }
+
 
     /**
      * Show the form for creating a new resource.

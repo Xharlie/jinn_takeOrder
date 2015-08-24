@@ -21,12 +21,12 @@ app.factory('menuFactory',function($http){
                 url: 'getPayMethods'
             })
         },
-        postOrder: function(order,transaction){
+        postOrder: function(order,transaction,yunpianInfo){
             return $http({
                 method: 'POST',
                 heasders: {'content-Type':'application/json'},
                 url: 'postOrder',
-                data: {order:order,transaction:transaction}
+                data: {order:order,transaction:transaction,yunpianInfo:yunpianInfo}
             })
         }
     };

@@ -41,6 +41,7 @@ app.controller('menuCTRL', function($scope,menuFactory) {
 
     /********************************************     common initial setting     *****************************************/
     var HTL_ID = 2;
+    var HTL_NM = '京华火车站店';
     $scope.cmbSelected = null;
     getServiceTypes();
     getPayMethods();
@@ -78,8 +79,12 @@ app.controller('menuCTRL', function($scope,menuFactory) {
             STATUS:'未确认',
             PYMNT_MTHD:cmbSelected.PYMNT_MTHD
         }
+        var yunpianInfo ={
+            CMB_NM: cmbSelected.CMB_NM,
+            HTL_NM: HTL_NM
+        }
 
-        menuFactory.postOrder(order,transaction).success(function(data){
+        menuFactory.postOrder(order,transaction,yunpianInfo).success(function(data){
             show(data);
             $('#'+modalId).modal('hide');
         });

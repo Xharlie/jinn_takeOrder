@@ -29,8 +29,6 @@ class OrderHistoryController extends Controller
                                 'OrderInfo.RMRK as RMRK','OrderInfo.RCVR_NM as RCVR_NM','OrderInfo.RCVR_PHN as RCVR_PHN','OrderInfo.RCVR_ADDRSS as RCVR_ADDRSS','OrderInfo.HTL_ID as HTL_ID',
                                 'OrderInfo.RM_ID as RM_ID','OrderInfo.TKT_ID as TKT_ID','Hotel_Info.HTL_NM as HTL_NM')
                             ->get();
-
-
         return response()->json($GoodsHistory);
     }
 
