@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-COMPATIBLE" content="IE-edge">
         <title>神灯后台</title>
-        <link href="Stylesheets/app.css" rel="stylesheet">
+        <link href="css/app.css" rel="stylesheet">
         <!-- Javascript -->
         <!--        <script src="assets/javascripts/application.js"></script>-->
     </head>

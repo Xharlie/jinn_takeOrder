@@ -1,0 +1,17 @@
+.btn-customized{
+	border: none;
+	border-radius: 0;
+	letter-spacing: 2px;
+	color: white;
+	background-color: $secondary-color;
+	padding: 10px 20px;
+	font-weight: 600;
+	cursor: pointer;
+
+	&:hover{
+		background-color: $brand-color;
+		transition: 0.2s;
+		-webkit-transition: 0.2s;
+		
+		}
+}

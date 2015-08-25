@@ -1,0 +1,31 @@
+.input-customized{
+	border: 1px solid $secondary-color;
+	width: 100%;
+	margin: 10px 0;
+	padding: 0 10px;
+	&:hover, &:focus{
+		border-color: $brand-color;
+		transition: 0.2s;
+	}
+
+
+	label{
+		margin: 10px 0;
+	}
+
+	input, textarea, select{
+		color: #666;
+		border: none;
+		margin: 10px 0 10px 10px;
+		padding: 0;
+		outline: none !important;
+		background-color: transparent;
+		box-shadow: none;
+		width: 65%;
+		float: right;
+		&:hover, &:focus{
+			outline: none !important;
+		}
+
+	}
+}

@@ -1,0 +1,78 @@
+$card-width: 200px;
+$card-height: 320px;
+$card-text-height: 100px;
+$card-price-width: 50px;
+$card-price-height: 50px;
+$card-margin: 10px;
+
+$brand-color: #FFC31C;
+$secondary-color: #333;
+
+
+.card{
+	width:$card-width;
+	height:$card-height;
+	//border:1px solid #bbb;
+	overflow:hidden;
+	float:left;
+	margin: 0 $card-margin $card-margin 0;
+	cursor: pointer;
+
+	&:hover{
+		transition: 0.2s;
+		border: 5px solid $brand-color;
+		//box-shadow: 0 0 5px #bbb;
+	}
+
+
+	.card-img{
+		width: $card-width;
+		height: $card-height - $card-text-height;
+		overflow: hidden; 
+
+	}
+
+	 .card-text{
+	 	/* Rectangle 1: */
+		//background-image: linear-gradient(-180deg, rgba(0,0,0,0.00) 1%, rgba(0,0,0,0.80) 100%);
+		height: $card-text-height;
+	 	position:relative;
+	 	padding: 5px 10px;
+	 	//top: 0 - $card-text-height;
+	 	z-index: 100;
+
+	 	h1,h2,h3,h4,h5{
+	 		font-weight: 600;
+	 		margin-bottom: 5px;
+	 		line-height: 1.2em;
+	 	}
+
+	 	p{
+	 		margin: 0;
+	 		opacity: 0.8;
+	 	}
+	 }
+
+	 .card-price{
+	 	border-radius: 3px;
+	 	z-index: 150;
+	 	padding: 5px;
+	 	width: $card-price-width;
+	 	height: $card-price-height;
+	 	position: relative;
+	 	//top: 0 - $card-price-height - $card-text-height + 10;
+	 	//left: $card-width - $card-price-width - 10;
+	 	background-color: orange;
+	 	text-align: center;
+	 	font-family: serif;
+	 	font-style: italic;
+	 	font-size: 1.5em;
+
+	 }
+}
+
+
+.card-default{
+	background-color: transparent;
+	color: #666;
+}
