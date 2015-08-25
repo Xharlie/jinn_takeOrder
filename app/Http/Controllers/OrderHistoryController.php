@@ -25,11 +25,43 @@ class OrderHistoryController extends Controller
                             })
                             ->leftJoin('Combo_Info','Combo_Info.CMB_ID','=','OrderInfo.CMB_ID')
                             ->whereRaw("OrderInfo.ORDR_TSTMP between '" . $ST_TM . "' and '". $END_TM."'")
-                            ->select('Combo_Info.CMB_NM as CMB_NM','OrderInfo.ORDR_ID as ORDR_ID','OrderInfo.TRN_ID as TRN_ID','OrderInfo.AMNT as AMNT','OrderInfo.ORDR_TSTMP as ORDR_TSTMP',
-                                'OrderInfo.RMRK as RMRK','OrderInfo.RCVR_NM as RCVR_NM','OrderInfo.RCVR_PHN as RCVR_PHN','OrderInfo.RCVR_ADDRSS as RCVR_ADDRSS','OrderInfo.HTL_ID as HTL_ID',
-                                'OrderInfo.RM_ID as RM_ID','OrderInfo.TKT_ID as TKT_ID','Hotel_Info.HTL_NM as HTL_NM')
+                            ->select('Combo_Info.CMB_NM as CMB_NM','OrderInfo.ORDR_ID as ORDR_ID',
+                                'OrderInfo.TRN_ID as TRN_ID','OrderInfo.AMNT as AMNT','OrderInfo.ORDR_TSTMP as ORDR_TSTMP',
+                                'OrderInfo.RMRK as RMRK','OrderInfo.RCVR_NM as RCVR_NM','OrderInfo.RCVR_PHN as RCVR_PHN',
+                                'OrderInfo.RCVR_ADDRSS as RCVR_ADDRSS','OrderInfo.HTL_ID as HTL_ID',
+                                'OrderInfo.RM_ID as RM_ID','OrderInfo.TKT_ID as TKT_ID','Hotel_Info.HTL_NM as HTL_NM',
+                                'OrderInfo.STATUS as STATUS','OrderInfo.ORDR_TAKEN_TSTMP as ORDR_TAKEN_TSTMP')
                             ->get();
         return response()->json($GoodsHistory);
+    }
+ /**
+     * change order status
+     *
+     * @return Response
+     */
+    public function updateStatus(Request $request)
+    {
+        $ORDR_ID = $request->input('ORDR_ID');
+        $STATUS = $request->input('STATUS');
+        try {
+            DB::beginTransaction();   //////  Important !! TRANSACTION Begin!!!
+            if($STATUS == '已下单'){
+                DB::update('update OrderInfo set STATUS = ?, ORDR_TAKEN_TSTMP = ? where ORDR_ID = ?',
+                    array($STATUS, date('Y-m-d H:i:s'), $ORDR_ID ) );
+            }else{
+                DB::update('update OrderInfo set STATUS = ? where ORDR_ID = ?',
+                    array($STATUS, $ORDR_ID ) );
+            }
+
+        }catch (Exception $e){
+            DB::rollback();
+            $message=($e->getLine())."&&".$e->getMessage();
+//            throw new Exception($message);
+            return response()->json('数据库错误'+$message);
+        }finally{
+            DB::commit();
+            return response()->json('成功');
+        }
     }
 
     /**

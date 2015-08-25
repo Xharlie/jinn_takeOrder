@@ -39,6 +39,9 @@ app.controller('menuCTRL', function($scope,menuFactory) {
         });
     };
 
+    function updateStatus(order){
+
+    }
     /********************************************     common initial setting     *****************************************/
     var HTL_ID = 2;
     var HTL_NM = '京华火车站店';
@@ -67,7 +70,8 @@ app.controller('menuCTRL', function($scope,menuFactory) {
             RCVR_ADDRSS:null,
             HTL_ID:HTL_ID,
             RM_ID:cmbSelected.RM_ID,
-            TKT_ID:cmbSelected.CMB_ID.toString()+now
+            TKT_ID:cmbSelected.CMB_ID.toString()+now,
+            STATUS:'未确认'
         }
         var transaction = {
             HTL_ID: HTL_ID,

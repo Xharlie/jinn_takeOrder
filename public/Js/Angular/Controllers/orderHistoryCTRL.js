@@ -31,6 +31,12 @@ app.controller('orderHistoryCTRL', function($scope,orderHistoryFactory) {
         },
         true
     );
+
+    $scope.updateStatus = function(order){
+        orderHistoryFactory.updateStatus(order).success(function(data){
+            show(data);
+        })
+    }
     /********************************************      initial function     *****************************************/
 
     function getOrderHistory(startDate,endDate){
@@ -39,9 +45,26 @@ app.controller('orderHistoryCTRL', function($scope,orderHistoryFactory) {
             dateUtil.dateFormat(new Date(endDate.getTime()+86400000)))
         .success(function(data){
             $scope.orders = data;
+            var now = (new Date()).getTime()
+            for(var i = 0; i < $scope.orders.length; i++){
+                if($scope.orders[i].STATUS == '未确认'){
+                    $scope.orders[i].orderTakenTime = util.Limit((now - (new Date($scope.orders[i].ORDR_TSTMP).getTime()))/1000/60 );
+                    $scope.orders[i].deliveryTime = 0;
+                }else if($scope.orders[i].STATUS == '已下单'){
+                    $scope.orders[i].orderTakenTime = util.Limit(((new Date($scope.orders[i].ORDR_TAKEN_TSTMP).getTime())
+                                                                - (new Date($scope.orders[i].ORDR_TSTMP).getTime()))/1000/60 );
+                    $scope.orders[i].deliveryTime = util.Limit((now - (new Date($scope.orders[i].ORDR_TAKEN_TSTMP).getTime()))/1000/60 );
+                }
+            }
         });
     };
 
+    setInterval(
+        function(){
+            getOrderHistory($scope.orderPanel.startDate,$scope.orderPanel.endDate);
+        }
+        ,30000
+    );
 
     /********************************************     common initial setting     *****************************************/
     $scope.orderPanel={startDate:yesterday,endDate:today};

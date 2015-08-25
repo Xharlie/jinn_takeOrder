@@ -75,7 +75,7 @@ class MenuController extends Controller
             DB::beginTransaction();   //////  Important !! TRANSACTION Begin!!!
             $TRN_ID = DB::table('Transaction_Info')->insertGetId($transaction);
             $order['TRN_ID'] = $TRN_ID;
-            DB::table('OrderInfo')->insert($order);
+            $ORDR_ID = DB::table('OrderInfo')->insertGetId($order);
 
         }catch (Exception $e){
             DB::rollback();
@@ -84,7 +84,7 @@ class MenuController extends Controller
             return response()->json('数据库错误'+$message);
         }finally{
             DB::commit();
-            Yunpian::notifyFrontDeskOrder($order['ORDR_ID'],$yunpianInfo['HTL_NM'],$order['HTL_ID'],$transaction['RM_ID'],
+            Yunpian::notifyFrontDeskOrder($ORDR_ID,$yunpianInfo['HTL_NM'],$order['HTL_ID'],$transaction['RM_ID'],
                 $order['ORDR_TSTMP'],$order['CMB_ID'],$yunpianInfo['CMB_NM'],$order['AMNT']);
             return response()->json('成功');
         }

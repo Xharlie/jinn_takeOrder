@@ -41,5 +41,13 @@ app.factory('orderHistoryFactory',function($http){
                 url: 'getOrderHistory/'+HTL_ID.toString()+'/'+ST_TM+'/'+END_TM
             })
         }
+        ,updateStatus: function(order){
+            return $http({
+                method: 'POST',
+                heasders: {'content-Type':'application/json'},
+                url: 'updateStatus',
+                data: {ORDR_ID:order.ORDR_ID,STATUS:order.STATUS}
+            })
+        }
     };
 });
