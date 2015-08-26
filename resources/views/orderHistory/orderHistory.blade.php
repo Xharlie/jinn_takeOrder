@@ -39,16 +39,16 @@
                 <table class="table table-striped table-bordered">
                     <thead>
                         <tr>
-                            <th>下单时间</th>
+                            <th>已等待</th>
                             <th>订单号</th>
-                            <th>交易号</th>
-                            <th>品名</th>
+                            <!--<th>交易号</th>-->
+                            <th>服务名</th>
                             <th>数量</th>
-                            <th>时间</th>
-                            <th>备注</th>
-                            <th>姓名</th>
-                            <th>电话</th>
-                            <th>地址</th>
+                            <th>下单时间</th>
+                            <th width=200>备注</th>
+                            <!--<th>姓名</th>-->
+                            <!--<th>电话</th>-->
+                            <!--<th>地址</th>-->
                             <th>酒店名</th>
                             <th>房间号</th>
                             <th>状态</th>
@@ -59,29 +59,30 @@
                             <td>
                                 <div class="progress" ng-if="order.STATUS == '未确认' || order.STATUS == '已下单'"
                                      popover="号台接单:{{order.orderTakenTime}}分,商家准备:{{order.deliveryTime}}分" popover-trigger="mouseenter"
-                                     popover-append-to-body popover-placement="right">
+                                     popover-append-to-body popover-placement="right" style="height:5px;margin:5px 0 0 0;border-radius:0;">
                                     <div class="progress-bar active" role="progressbar"
                                          style="width:{{(order.deliveryTime+order.orderTakenTime > 60)?
                                             order.orderTakenTime*100/(order.deliveryTime+order.orderTakenTime):order.orderTakenTime *100/60}}%;">
                                     </div>
                                     <div class="progress-bar progress-bar-warning active" role="progressbar"
                                          style="width:{{(order.deliveryTime+order.orderTakenTime > 60)?
-                                            order.deliveryTime*100/(order.deliveryTime+order.orderTakenTime):order.deliveryTime *100/60 }}%;">
+                                            order.deliveryTime*100/(order.deliveryTime+order.orderTakenTime):order.deliveryTime *100/60 }}%;
+                                            ">
                                     </div>
                                 </div>
                                 <div ng-if="order.STATUS != '未确认' && order.STATUS != '已下单'">
-                                        Very Good!
+                                        已完成
                                 </div>
                             </td>
                             <td>{{order.ORDR_ID}}</td>
-                            <td>{{order.TRN_ID}}</td>
+                            <!--<td>{{order.TRN_ID}}</td>-->
                             <td>{{order.CMB_NM}}</td>
                             <td>{{order.AMNT}}</td>
                             <td>{{order.ORDR_TSTMP}}</td>
                             <td>{{order.RMRK}}</td>
-                            <td>{{order.RCVR_NM}}</td>
-                            <td>{{order.RCVR_PHN}}</td>
-                            <td>{{order.RCVR_ADDRSS}}</td>
+                            <!--<td>{{order.RCVR_NM}}</td>-->
+                            <!--<td>{{order.RCVR_PHN}}</td>-->
+                            <!--<td>{{order.RCVR_ADDRSS}}</td>-->
                             <td>{{order.HTL_NM}}</td>
                             <td>{{order.RM_ID}}</td>
                             <td>
@@ -89,7 +90,7 @@
                                     <option value="未确认">未确认</option>
                                     <option value="已下单">已下单</option>
                                     <option value="已送达">已送达</option>
-                                    <option value="申请取消">申请取消</option>
+                                    <!--<option value="申请取消">申请取消</option>-->
                                     <option value="已取消">已取消</option>
                                 </select>
                             </td>

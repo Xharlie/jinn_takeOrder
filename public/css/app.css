@@ -6131,6 +6131,10 @@ body {
     transition: 0.2s;
     -webkit-transition: 0.2s; }
 
+.btn-active {
+  background-color: #FFC31C;
+  color: #333; }
+
 .input-customized {
   border: 1px solid #333;
   width: 100%;
