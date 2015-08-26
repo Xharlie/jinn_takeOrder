@@ -31,7 +31,8 @@ class MenuController extends Controller
                             'Combo_Info.CMB_PRC as CMB_PRC','Combo_Info.CMB_ORGN_PRC as CMB_ORGN_PRC',
                             'Combo_Info.CMB_TRANS_PRC as CMB_TRANS_PRC','Combo_Info.CMB_DTL as CMB_DTL',
                             'Combo_Info.SRVC_TP_ID as SRVC_TP_ID','Combo_Info.CMB_PIC as CMB_PIC',
-                            'Merchant_Info.MRCHNT_ID as MRCHNT_ID','Merchant_Info.MRCHNT_NM as MRCHNT_NM'
+                            'Merchant_Info.MRCHNT_ID as MRCHNT_ID','Merchant_Info.MRCHNT_NM as MRCHNT_NM',
+                            'Combo_Info.CMB_PAY_MTHD as CMB_PAY_MTHD','Combo_Info.CMB_PRVD_MTHD as CMB_PRVD_MTHD'
                         )
                         ->get();
         return response()->json($comboInfo);

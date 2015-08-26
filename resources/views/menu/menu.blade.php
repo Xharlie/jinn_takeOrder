@@ -68,7 +68,11 @@
                             <!-- 服务描述 -->
                             <p>{{cmbSelected.CMB_DSCRPT}}</p>
                             <!-- 给前台的instruction -->
-                            <p>提供商将与前台直接协商服务内容。</p>
+                            <div class="separator-group">
+                                <div class="separator-text">服务方式</div>
+                                <div class="separator-line"></div>
+                            </div>
+                            <p>{{cmbSelected.CMB_PRVD_MTHD}}</p>
                             <!-- 分割线 -->
                             <div class="separator-group">
                                 <div class="separator-text">订单信息</div>
@@ -85,7 +89,7 @@
                                     <div class="input-group input-customized">
                                         <label>付款方式</label>
                                         <select ng-model="cmbSelected.PYMNT_MTHD"
-                                                ng-options="payMethod.PAY_MTHD_NM as payMethod.PAY_MTHD_NM for payMethod in payMethods" />
+                                                ng-options="payMethod.PAY_MTHD_NM as payMethod.PAY_MTHD_NM for payMethod in cmbSelected.payMethods " />
                                     </div>
                                     <!-- 数量 -->
                                     <div class="input-group input-customized">
