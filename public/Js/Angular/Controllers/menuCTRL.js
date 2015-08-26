@@ -19,7 +19,16 @@ app.controller('menuCTRL', function($scope,menuFactory) {
     $scope.openModal = function(combo,id){
         $scope.cmbSelected = JSON.parse(JSON.stringify(combo));
         $scope.cmbSelected.AMNT = 1;
-        $scope.cmbSelected.PYMNT_MTHD = $scope.payMethods[0].PAY_MTHD_NM;
+        if($scope.cmbSelected.payMethods == null){
+            $scope.cmbSelected.payMethods = [];
+            var payMethodArray = $scope.cmbSelected.CMB_PAY_MTHD.split(',');
+            for(var i = 0; i < $scope.payMethods.length; i++){
+                if(payMethodArray.indexOf($scope.payMethods[i].PAY_MTHD_ID.toString())>=0){
+                    $scope.cmbSelected.payMethods.push($scope.payMethods[i]);
+                }
+            }
+        }
+        $scope.cmbSelected.PYMNT_MTHD = $scope.cmbSelected.payMethods[0].PAY_MTHD_NM;
         $('#'+id).modal({backdrop: true});
     }
 

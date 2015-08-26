@@ -58,7 +58,7 @@
                         <tr ng-repeat="order in orders">
                             <td>
                                 <div class="progress" ng-if="order.STATUS == '未确认' || order.STATUS == '已下单'"
-                                     popover="号台接单:{{order.orderTakenTime}}分,商家准备:{{order.deliveryTime}}分" popover-trigger="mouseenter"
+                                     popover="号台接单:{{order.orderTakenTime}}分钟,商家准备:{{order.deliveryTime}}分钟" popover-trigger="mouseenter"
                                      popover-append-to-body popover-placement="right" style="height:5px;margin:5px 0 0 0;border-radius:0;">
                                     <div class="progress-bar active" role="progressbar"
                                          style="width:{{(order.deliveryTime+order.orderTakenTime > 60)?
@@ -66,8 +66,7 @@
                                     </div>
                                     <div class="progress-bar progress-bar-warning active" role="progressbar"
                                          style="width:{{(order.deliveryTime+order.orderTakenTime > 60)?
-                                            order.deliveryTime*100/(order.deliveryTime+order.orderTakenTime):order.deliveryTime *100/60 }}%;
-                                            ">
+                                            order.deliveryTime*100/(order.deliveryTime+order.orderTakenTime):order.deliveryTime *100/60 }}%;">
                                     </div>
                                 </div>
                                 <div ng-if="order.STATUS != '未确认' && order.STATUS != '已下单'">
