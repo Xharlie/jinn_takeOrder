@@ -9,8 +9,11 @@ app.controller('menuCTRL', function($scope,menuFactory) {
 
     /********************************************       utility       ****************************************************/
 
-    $scope.selectServiceType = function(serviceType){
+    $scope.selectServiceType = function(serviceType,serviceTypeStyel){
         $scope.selectedType = serviceType;
+        serviceActive.activeClass = '';
+        serviceTypeStyel.activeClass = 'btn-active';
+        serviceActive = serviceTypeStyel;
     }
 
     $scope.openModal = function(combo,id){
@@ -30,6 +33,9 @@ app.controller('menuCTRL', function($scope,menuFactory) {
     function getServiceTypes(){
         menuFactory.getServiceTypes().success(function(data){
             $scope.serviceTypes = data;
+            for(var i = 0; i< $scope.serviceTypes.length; i++){
+                $scope.serviceTypes[i].serviceActiveClass = '';
+            }
         });
     };
 
@@ -39,13 +45,13 @@ app.controller('menuCTRL', function($scope,menuFactory) {
         });
     };
 
-    function updateStatus(order){
 
-    }
     /********************************************     common initial setting     *****************************************/
     var HTL_ID = 2;
     var HTL_NM = '京华火车站店';
     $scope.cmbSelected = null;
+    $scope.allService = {activeClass : 'btn-active'};
+    var serviceActive = $scope.allService;
     getServiceTypes();
     getPayMethods();
     getMenu(HTL_ID);

@@ -6,15 +6,12 @@
 <div class="container">
     <div class="col-sm-2 sideControl">
         <ul>
-            <li class="btn btn-customized">
-                <div ng-click="selectServiceType('')">
-                        <div class=""><p>全部</div>
-                </div>
+            <li class="btn btn-customized" ng-click="selectServiceType('',allService)" ng-class="allService.activeClass">
+                <div ><p>全部</p></div>
             </li>
-            <li class="btn btn-customized" ng-repeat="serviceType in serviceTypes">
-                <div ng-click="selectServiceType(serviceType)">
-                        <div class=""><p ng-bind="serviceType.SRVC_TP_NM"></p></div>
-                </div>
+            <li class="btn btn-customized" ng-repeat="serviceType in serviceTypes"
+                    ng-click="selectServiceType(serviceType,serviceType)" ng-class="serviceType.activeClass">
+                <div ><p ng-bind="serviceType.SRVC_TP_NM"></p></div>
             </li>
         </ul>
     </div>
