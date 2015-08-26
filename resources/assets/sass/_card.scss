@@ -54,20 +54,21 @@ $secondary-color: #333;
 	 }
 
 	 .card-price{
-	 	border-radius: 3px;
 	 	z-index: 150;
-	 	padding: 5px;
+		padding: 5px;
 	 	width: $card-price-width;
 	 	height: $card-price-height;
 	 	position: relative;
-	 	//top: 0 - $card-price-height - $card-text-height + 10;
-	 	//left: $card-width - $card-price-width - 10;
-	 	background-color: orange;
 	 	text-align: center;
-	 	font-family: serif;
-	 	font-style: italic;
-	 	font-size: 1.5em;
-
+	  	font-family: inherit;
+	  	//background-color: $secondary-color;
+	  	//color: white !important;
+	  	/* font-style: italic; */
+	  	font-weight: bold;
+	  	font-size: 1em !important;
+	  	color: #111;
+	  	top: -30px;
+	  	left: 150px;
 	 }
 }
 
