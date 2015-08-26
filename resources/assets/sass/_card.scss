@@ -68,7 +68,7 @@ $secondary-color: #333;
 	  	font-size: 1em !important;
 	  	color: #111;
 	  	top: -30px;
-	  	left: 150px;
+	  	left: 130px;
 	 }
 }
 
@@ -76,4 +76,37 @@ $secondary-color: #333;
 .card-default{
 	background-color: transparent;
 	color: #666;
+}
+
+.card-disabled{
+	background-color: white !important;
+	cursor: default;
+	color: #555 !important;
+
+	.card-price{
+		color: #555 !important;
+	}
+
+	.card-img{
+		opacity: 0.2;
+	}
+
+	&:hover{
+		border: none !important;
+	}
+
+	&:before{
+		height: $card-height;
+		width: $card-width;
+		content:"服务暂停";
+		font-weight: bold;
+		position: absolute;
+		z-index: 100;
+		background-color: rgba(0,0,0,0.5);
+		color: white;
+		padding: 40px 74px;
+	}
+
+
+
 }
