@@ -89,3 +89,20 @@ var filterAlert2 ={
         return null;
     }
 }
+
+var includes = {
+    checkAll: function(criteriaString, context){
+        var criteria = criteriaString.split(',');
+        for(var i = 0; i < criteria.length; i++){
+            var alert = eval("this."+criteria[i]+"(context)");
+            if(alert!=null){
+                return alert;
+            }
+        }
+        return null;
+    }
+    ,phone: function(context){
+        var phonePattern  = /[0-9]{11}/;
+        return phonePattern.test(context)?null:'请输入客人电话';
+    }
+}

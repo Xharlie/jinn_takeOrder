@@ -36,6 +36,7 @@
 
         <!-- JS utility-->
         <script src="Js/pan_lib/dateUtil.js"></script>
+        <script src="Js/pan_lib/filter.js"></script>
         <script src="Js/pan_lib/util.js"></script>
     </body>
 </html>

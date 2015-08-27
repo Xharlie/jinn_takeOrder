@@ -64,8 +64,6 @@ app.controller('menuCTRL', function($scope,menuFactory) {
     getServiceTypes();
     getPayMethods();
     getMenu(HTL_ID);
-
-
     setInterval(
         function(){
             getServiceTypes();
@@ -80,11 +78,22 @@ app.controller('menuCTRL', function($scope,menuFactory) {
         if(!util.isNum(cmbSelected.AMNT)){
             show('请填好数量');
             return;
-        };
+        }
         if(cmbSelected.RM_ID=='' || cmbSelected.RM_ID==null){
             show('请填好房间号');
             return;
-        };
+        }
+        for(var i = 0; i < $scope.serviceTypes.length; i++ ){
+            if($scope.serviceTypes[i].SRVC_TP_ID == cmbSelected.SRVC_TP_ID){
+                var alert = includes.checkAll($scope.serviceTypes[i].SRVC_NCSSRY_INFO,cmbSelected.RMRK);
+                if(alert!=null){
+                    show('在备注里'+alert);
+                    return;
+                }else{
+                    break;
+                }
+            }
+        }
         var now = dateUtil.tstmpFormat(new Date());
         var order = {
             CMB_ID:cmbSelected.CMB_ID,
