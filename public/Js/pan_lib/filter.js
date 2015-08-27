@@ -92,11 +92,13 @@ var filterAlert2 ={
 
 var includes = {
     checkAll: function(criteriaString, context){
-        var criteria = criteriaString.split(',');
-        for(var i = 0; i < criteria.length; i++){
-            var alert = eval("this."+criteria[i]+"(context)");
-            if(alert!=null){
-                return alert;
+        if(criteriaString!=null && criteriaString!=''){
+            var criteria = criteriaString.split(',');
+            for(var i = 0; i < criteria.length; i++){
+                var alert = eval("this."+criteria[i]+"(context)");
+                if(alert!=null){
+                    return alert;
+                }
             }
         }
         return null;
