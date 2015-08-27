@@ -21,7 +21,7 @@
         <!-- 循环显示所有可供选择的服务 -->
         <!-- 每一个服务都被放到一个card里面 -->
         <div class="card card-default" ng-repeat="combo in combos | filter: {SRVC_TP_ID: selectedType.SRVC_TP_ID}"
-             ng-click="openModal(combo,'comboDetailModal')" >
+             ng-click="openModal(combo,'comboDetailModal')" ng-class="combo.CMB_STL_CLSS">
             <div class="card-body">
                 <!-- 服务照片 -->
                 <div class="card-img" style="background:url(images/combo/{{combo.CMB_PIC}});background-size:cover;">
