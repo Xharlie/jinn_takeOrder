@@ -64,6 +64,17 @@ app.controller('menuCTRL', function($scope,menuFactory) {
     getServiceTypes();
     getPayMethods();
     getMenu(HTL_ID);
+
+
+    setInterval(
+        function(){
+            getServiceTypes();
+            getPayMethods();
+            getMenu(HTL_ID);
+        }
+        ,600000
+    );
+
     /************** ********************************** submit  ********************************** *************/
     $scope.submit = function(cmbSelected,modalId){
         if(!util.isNum(cmbSelected.AMNT)){
