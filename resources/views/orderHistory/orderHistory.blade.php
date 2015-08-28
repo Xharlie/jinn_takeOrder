@@ -8,6 +8,11 @@
                 <div class="separator-text">订单历史</div>
                 <div class="separator-line"></div>
             </div>
+            <div>
+                <div class="btn-customized btn-block" ng-click="selectDate('today')">今天</div>
+                <div class="btn-customized btn-block" ng-click="selectDate('yesterday')">昨天</div>
+                <div class="btn-customized btn-block" ng-click="selectDate('thisWeek')">本周</div>
+            </div>
             <div class="input-group input-customized datePick" ng-controller="Datepicker" >
                 <label>从</label>
                 <input type="text" show-weeks="false" datepicker-popup="yyyy-MM-dd"
@@ -52,10 +57,11 @@
                             <th>酒店名</th>
                             <th>房间号</th>
                             <th>状态</th>
+                            <th>挂账金额</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="order in orders">
+                        <tr ng-repeat="order in orders | orderBy:'ORDR_ID':'true'">
                             <td>
                                 <div class="progress" ng-if="order.STATUS == '未确认' || order.STATUS == '已下单'"
                                      popover="号台接单:{{order.orderTakenTime}}分钟,商家准备:{{order.deliveryTime}}分钟" popover-trigger="mouseenter"
@@ -93,6 +99,19 @@
                                     <option value="已取消">已取消</option>
                                 </select>
                             </td>
+                            <td>{{order.ACCT_ON_RM}}元</td>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>挂账总计:</td>
+                            <td>{{orderPanel.sumACCT_ON_RM}}元</td>
+                        </tr>
                         </tr>
                     </tbody>
                 </table>

@@ -19,18 +19,21 @@ class OrderHistoryController extends Controller
     {
         //
         $GoodsHistory = DB::table('OrderInfo')
+                            ->join('Transaction_Info','OrderInfo.TRN_ID','=','Transaction_Info.TRN_ID')
                             ->join('Hotel_Info', function ($join) use ($HTL_ID) {
                                 $join->where('OrderInfo.HTL_ID', '=', $HTL_ID)
                                      ->on('Hotel_Info.HTL_ID', '=', 'OrderInfo.HTL_ID');
                             })
                             ->leftJoin('Combo_Info','Combo_Info.CMB_ID','=','OrderInfo.CMB_ID')
                             ->whereRaw("OrderInfo.ORDR_TSTMP between '" . $ST_TM . "' and '". $END_TM."'")
-                            ->select('Combo_Info.CMB_NM as CMB_NM','OrderInfo.ORDR_ID as ORDR_ID',
+                            ->select('Combo_Info.CMB_NM as CMB_NM','Combo_Info.CMB_PRC as CMB_PRC',
+                                'Combo_Info.CMB_TRANS_PRC as CMB_TRANS_PRC','OrderInfo.ORDR_ID as ORDR_ID',
                                 'OrderInfo.TRN_ID as TRN_ID','OrderInfo.AMNT as AMNT','OrderInfo.ORDR_TSTMP as ORDR_TSTMP',
                                 'OrderInfo.RMRK as RMRK','OrderInfo.RCVR_NM as RCVR_NM','OrderInfo.RCVR_PHN as RCVR_PHN',
                                 'OrderInfo.RCVR_ADDRSS as RCVR_ADDRSS','OrderInfo.HTL_ID as HTL_ID',
                                 'OrderInfo.RM_ID as RM_ID','OrderInfo.TKT_ID as TKT_ID','Hotel_Info.HTL_NM as HTL_NM',
-                                'OrderInfo.STATUS as STATUS','OrderInfo.ORDR_TAKEN_TSTMP as ORDR_TAKEN_TSTMP')
+                                'OrderInfo.STATUS as STATUS','OrderInfo.ORDR_TAKEN_TSTMP as ORDR_TAKEN_TSTMP',
+                                'Transaction_Info.PYMNT_MTHD as PYMNT_MTHD')
                             ->get();
         return response()->json($GoodsHistory);
     }
