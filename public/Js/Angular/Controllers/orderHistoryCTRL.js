@@ -65,7 +65,7 @@ app.controller('orderHistoryCTRL', function($scope,orderHistoryFactory) {
             for(var i = 0; i < $scope.orders.length; i++){
                 ///// acct on room for every order
                 $scope.orders[i].ACCT_ON_RM = ($scope.orders[i].PYMNT_MTHD == '酒店挂账' && $scope.orders[i].STATUS != '已取消')?
-                ($scope.orders[i].AMNT * ($scope.orders[i].CMB_TRANS_PRC + $scope.orders[i].CMB_PRC)):0;
+                ($scope.orders[i].AMNT * (parseFloat($scope.orders[i].CMB_TRANS_PRC) + parseFloat($scope.orders[i].CMB_PRC))):0;
                 $scope.orderPanel.sumACCT_ON_RM = $scope.orderPanel.sumACCT_ON_RM + $scope.orders[i].ACCT_ON_RM;
                 if($scope.orders[i].STATUS == '未确认'){
                     $scope.orders[i].orderTakenTime = util.Limit((now - (new Date($scope.orders[i].ORDR_TSTMP).getTime()))/1000/60 );
