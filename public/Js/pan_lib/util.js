@@ -7,6 +7,13 @@ var util = {
     },
     deepCopy: function(copyee){
         return  JSON.parse(JSON.stringify(copyee));
+    },
+    array2Obj: function(targetArray,keyColumn,valueColumn){
+        var resultObj = {};
+        for(var i = 0; i<targetArray.length; i++){
+            resultObj[targetArray[i][keyColumn]] = targetArray[i][valueColumn];
+        }
+        return resultObj;
     }
 }
 

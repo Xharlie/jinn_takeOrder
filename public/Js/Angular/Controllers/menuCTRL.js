@@ -106,7 +106,7 @@ app.controller('menuCTRL', function($scope,menuFactory) {
             HTL_ID:HTL_ID,
             RM_ID:cmbSelected.RM_ID,
             TKT_ID:cmbSelected.CMB_ID.toString()+now,
-            STATUS:'未确认'
+            STATUS:'已下单'
         }
         var transaction = {
             HTL_ID: HTL_ID,
@@ -115,7 +115,7 @@ app.controller('menuCTRL', function($scope,menuFactory) {
             CUS_PHN:null,
             CUS_NM:null,
             PYMNT_TTL:(cmbSelected.CMB_PRC+cmbSelected.CMB_TRANS_PRC)*cmbSelected.AMNT,
-            STATUS:'未确认',
+            STATUS:'已下单',
             PYMNT_MTHD:cmbSelected.PYMNT_MTHD
         }
         var yunpianInfo ={

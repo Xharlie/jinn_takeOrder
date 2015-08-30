@@ -92,8 +92,8 @@
                             <td>{{order.RM_ID}}</td>
                             <td>
                                 <select ng-model="order.STATUS" ng-change="updateStatus(order)">
-                                    <option value="未确认">未确认</option>
                                     <option value="已下单">已下单</option>
+                                    <option value="已确认">已确认</option>
                                     <option value="已送达">已送达</option>
                                     <!--<option value="申请取消">申请取消</option>-->
                                     <option value="已取消">已取消</option>
