@@ -36,6 +36,7 @@ app.controller('orderHistoryCTRL', function($scope,orderHistoryFactory) {
     $scope.updateStatus = function(order){
         orderHistoryFactory.updateStatus(order).success(function(data){
             show(data);
+            $scope.orderPanel.lastTimeOrders[order.ORDR_ID] = order.STATUS;
             getOrderHistory($scope.orderPanel.startDate,$scope.orderPanel.endDate,null);
         })
     };
