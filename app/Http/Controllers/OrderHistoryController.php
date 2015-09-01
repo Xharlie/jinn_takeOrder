@@ -48,7 +48,7 @@ class OrderHistoryController extends Controller
         $STATUS = $request->input('STATUS');
         try {
             DB::beginTransaction();   //////  Important !! TRANSACTION Begin!!!
-            if($STATUS == '已下单'){
+            if($STATUS == '已确认'){
                 DB::update('update OrderInfo set STATUS = ?, ORDR_TAKEN_TSTMP = ? where ORDR_ID = ?',
                     array($STATUS, date('Y-m-d H:i:s'), $ORDR_ID ) );
             }else{
