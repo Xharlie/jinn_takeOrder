@@ -96,7 +96,6 @@ app.controller('orderHistoryCTRL', function($scope,orderHistoryFactory) {
             $scope.orderPanel.lastTimeOrders = util.array2Obj($scope.orders,'ORDR_ID','STATUS');
         });
     };
-
     setInterval(
         function(){
             getOrderHistory($scope.orderPanel.startDate,$scope.orderPanel.endDate,'compare');

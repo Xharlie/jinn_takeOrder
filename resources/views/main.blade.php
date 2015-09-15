@@ -9,7 +9,10 @@
         <!--        <script src="assets/javascripts/application.js"></script>-->
     </head>
     <body>
-        <div class="sideNavContainer" ng-controller="generalNavCTRL" >
+    <script>
+        var uni = {userInfo : JSON.parse('<?php echo json_encode($userInfo); ?>') };
+    </script>
+    <div class="sideNavContainer" ng-controller="generalNavCTRL" >
             @include('generalNav')
         </div>
         <div class="main contentContainer container-fluid "  ng-view></div>
@@ -33,6 +36,7 @@
         <script src="Js/Angular/Controllers/orderHistoryCTRL.js"></script>
         <!-- JS Angular Services-->
         <script src="Js/Angular/Services/menuService.js"></script>
+        <script src="Js/Angular/Services/sessionNcookies.js"></script>
 
         <!-- JS utility-->
         <script src="Js/pan_lib/dateUtil.js"></script>

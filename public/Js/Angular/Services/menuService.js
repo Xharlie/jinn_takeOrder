@@ -1,10 +1,10 @@
 app.factory('menuFactory',function($http){
     return{
-        getMenu: function(HTL_ID){
+        getMenu: function(){
             return $http({
                 method: 'GET',
                 heasders: {'content-Type':'application/json'},
-                url: 'getMenu/'+HTL_ID.toString()
+                url: 'getMenu'
             })
         },
         getServiceTypes: function(){
@@ -34,11 +34,11 @@ app.factory('menuFactory',function($http){
 
 app.factory('orderHistoryFactory',function($http){
     return{
-        getOrderHistory: function(HTL_ID,ST_TM,END_TM){
+        getOrderHistory: function(ST_TM,END_TM){
             return $http({
                 method: 'GET',
                 heasders: {'content-Type':'application/json'},
-                url: 'getOrderHistory/'+HTL_ID.toString()+'/'+ST_TM+'/'+END_TM
+                url: 'getOrderHistory/'+ST_TM+'/'+END_TM
             })
         }
         ,updateStatus: function(order){

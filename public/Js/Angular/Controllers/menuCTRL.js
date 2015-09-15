@@ -2,18 +2,18 @@
  * Created by charlie on 8/20/15.
  */
 
-app.controller('menuCTRL', function($scope,menuFactory) {
+app.controller('menuCTRL', function($scope,menuFactory,sessionFactory) {
 
     /********************************************     validation       ***************************************************/
 
 
     /********************************************       utility       ****************************************************/
 
-    $scope.selectServiceType = function(serviceType,serviceTypeStyel){
+    $scope.selectServiceType = function(serviceType,serviceTypeStyle){
         $scope.selectedType = serviceType;
         serviceActive.activeClass = '';
-        serviceTypeStyel.activeClass = 'btn-active';
-        serviceActive = serviceTypeStyel;
+        serviceTypeStyle.activeClass = 'btn-active';
+        serviceActive = serviceTypeStyle;
     }
 
     $scope.openModal = function(combo,id){
@@ -33,8 +33,8 @@ app.controller('menuCTRL', function($scope,menuFactory) {
     }
 
     /********************************************      initial function     *****************************************/
-    function getMenu(HTL_ID){
-        menuFactory.getMenu(HTL_ID).success(function(data){
+    function getMenu(){
+        menuFactory.getMenu().success(function(data){
             $scope.combos = data;
         });
     };
@@ -54,24 +54,37 @@ app.controller('menuCTRL', function($scope,menuFactory) {
         });
     };
 
+    /*********   get userInfo   **********/
+    function getUserInfo(func){
+        sessionFactory.getUserInfo().success(function(data){
+            if(data.userInfo != null){
+                $scope.userInfo = data.userInfo;
+            }
+            func();
+        });
+    }
 
     /********************************************     common initial setting     *****************************************/
-    var HTL_ID = 2;
     var HTL_NM = '京华火车站店';
     $scope.cmbSelected = null;
     $scope.allService = {activeClass : 'btn-active'};
     var serviceActive = $scope.allService;
-    getServiceTypes();
-    getPayMethods();
-    getMenu(HTL_ID);
+    $scope.userInfo ={};
+    getUserInfo(function(){
+        getServiceTypes();
+        getPayMethods();
+        getMenu();
+    });
     setInterval(
         function(){
             getServiceTypes();
             getPayMethods();
-            getMenu(HTL_ID);
+            getMenu();
         }
         ,600000
     );
+
+
 
     /************** ********************************** submit  ********************************** *************/
     $scope.submit = function(cmbSelected,modalId){

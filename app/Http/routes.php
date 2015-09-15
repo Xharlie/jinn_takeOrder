@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Http\Request;
 
 Blade::setContentTags('<%', '%>');
 Blade::setEscapedContentTags('<%%','%%>');
@@ -17,19 +17,44 @@ Blade::setRawTags('<%%%', '%%%>');
 */
 
 Route::get('/', function () {
-    return view('main');
+    return view('main',['userInfo' => session("flashUserInfo")]);
+
 });
 
 Route::get('getServiceTypes','MenuController@getServiceTypes');
 
 Route::get('getPayMethods','MenuController@getPayMethods');
 
-Route::get('getMenu/{id}','MenuController@getMenu');
+Route::get('getMenu','MenuController@getMenu');
 
 Route::post('postOrder','MenuController@postOrder');
 
 
 
-Route::get('getOrderHistory/{HTL_ID}/{ST_TM}/{END_TM}','OrderHistoryController@getOrderHistory');
+Route::get('getOrderHistory/{ST_TM}/{END_TM}','OrderHistoryController@getOrderHistory');
 Route::post('updateStatus','OrderHistoryController@updateStatus');
 //Route::get('history','OrderHistoryController');
+
+// getUserInfo
+Route::get('/getUserInfo', 'UserController@getUserInfo');
+
+Route::get('/logoutAjax', ['as' => 'logoutAjax',function()
+{
+    return 'logout!';
+}]);
+
+Route::get('/logon', ['as' => 'logon',function()
+{
+//    return $request->path();
+    return view('logon', ['err' => session("err")]);
+}]);
+
+Route::post('/logonPost', ['as' => 'logonPost', 'uses' => 'UserController@logonPost']);
+
+Route::get('/logout', ['as' => 'logout',function(Request $request)
+{
+    $request->session()->flush();
+    Auth::logout();
+    return redirect('/logon');
+
+}]);

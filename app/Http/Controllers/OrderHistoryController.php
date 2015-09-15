@@ -15,13 +15,13 @@ class OrderHistoryController extends Controller
      *
      * @return Response
      */
-    public function getOrderHistory($HTL_ID,$ST_TM,$END_TM)
+    public function getOrderHistory($ST_TM,$END_TM)
     {
         //
         $GoodsHistory = DB::table('OrderInfo')
                             ->join('Transaction_Info','OrderInfo.TRN_ID','=','Transaction_Info.TRN_ID')
-                            ->join('Hotel_Info', function ($join) use ($HTL_ID) {
-                                $join->where('OrderInfo.HTL_ID', '=', $HTL_ID)
+                            ->join('Hotel_Info', function ($join)  {
+                                $join->where('OrderInfo.HTL_ID', '=', session('userInfo')['HTL_ID'])
                                      ->on('Hotel_Info.HTL_ID', '=', 'OrderInfo.HTL_ID');
                             })
                             ->leftJoin('Combo_Info','Combo_Info.CMB_ID','=','OrderInfo.CMB_ID')

@@ -16,12 +16,12 @@ class MenuController extends Controller
      *
      * @return Response
      */
-    public function getMenu($HTL_ID)
+    public function getMenu()
     {
         $comboInfo = DB::table('Hotel_Info')
-                        ->join('Hotel_Combo_Mapping', function ($join) use ($HTL_ID) {
+                        ->join('Hotel_Combo_Mapping', function ($join){
                             $join->on('Hotel_Combo_Mapping.HTL_ID', '=', 'Hotel_Info.HTL_ID')
-                                ->where('Hotel_Info.HTL_ID', '=', $HTL_ID);
+                                ->where('Hotel_Info.HTL_ID', '=', session('userInfo')['HTL_ID']);
                         })
                         ->join('Combo_Info','Combo_Info.CMB_ID','=','Hotel_Combo_Mapping.CMB_ID')
                         ->join('Merchant_Combo_Mapping','Merchant_Combo_Mapping.CMB_ID','=','Combo_Info.CMB_ID')
