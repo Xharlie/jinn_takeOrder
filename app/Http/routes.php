@@ -29,11 +29,12 @@ Route::get('getMenu','MenuController@getMenu');
 
 Route::post('postOrder','MenuController@postOrder');
 
+Route::post('postGreetings','GreetingController@postGreetings');
+
 
 
 Route::get('getOrderHistory/{ST_TM}/{END_TM}','OrderHistoryController@getOrderHistory');
 Route::post('updateStatus','OrderHistoryController@updateStatus');
-//Route::get('history','OrderHistoryController');
 
 // getUserInfo
 Route::get('/getUserInfo', 'UserController@getUserInfo');

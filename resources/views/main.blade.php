@@ -34,6 +34,10 @@
         <script src="Js/Angular/Controllers/generalNavCTRL.js"></script>
         <script src="Js/Angular/Controllers/menuCTRL.js"></script>
         <script src="Js/Angular/Controllers/orderHistoryCTRL.js"></script>
+        <script src="Js/Angular/Controllers/greetingCTRL.js"></script>
+        <script src="Js/Angular/Controllers/directiveControllers/xlabelController.js"></script>
+        <!-- JS Angular directives-->
+        <script src="Js/Angular/directives/xlabel.js"></script>
         <!-- JS Angular Services-->
         <script src="Js/Angular/Services/menuService.js"></script>
         <script src="Js/Angular/Services/sessionNcookies.js"></script>

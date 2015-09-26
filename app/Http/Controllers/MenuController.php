@@ -24,8 +24,8 @@ class MenuController extends Controller
                                 ->where('Hotel_Info.HTL_ID', '=', session('userInfo')['HTL_ID']);
                         })
                         ->join('Combo_Info','Combo_Info.CMB_ID','=','Hotel_Combo_Mapping.CMB_ID')
-                        ->join('Merchant_Combo_Mapping','Merchant_Combo_Mapping.CMB_ID','=','Combo_Info.CMB_ID')
-                        ->join('Merchant_Info','Merchant_Info.MRCHNT_ID','=','Merchant_Combo_Mapping.MRCHNT_ID')
+                        ->leftjoin('Merchant_Combo_Mapping','Merchant_Combo_Mapping.CMB_ID','=','Combo_Info.CMB_ID')
+                        ->leftjoin('Merchant_Info','Merchant_Info.MRCHNT_ID','=','Merchant_Combo_Mapping.MRCHNT_ID')
                         ->select('Combo_Info.CMB_ID as CMB_ID','Combo_Info.CMB_NM as CMB_NM',
                             'Combo_Info.CMB_THMBNL as CMB_THMBNL','Combo_Info.CMB_DSCRPT as CMB_DSCRPT',
                             'Combo_Info.CMB_PRC as CMB_PRC','Combo_Info.CMB_ORGN_PRC as CMB_ORGN_PRC',
@@ -33,7 +33,7 @@ class MenuController extends Controller
                             'Combo_Info.SRVC_TP_ID as SRVC_TP_ID','Combo_Info.CMB_PIC as CMB_PIC',
                             'Merchant_Info.MRCHNT_ID as MRCHNT_ID','Merchant_Info.MRCHNT_NM as MRCHNT_NM',
                             'Combo_Info.CMB_PAY_MTHD as CMB_PAY_MTHD','Combo_Info.CMB_PRVD_MTHD as CMB_PRVD_MTHD',
-                            'Combo_Info.CMB_STL_CLSS as CMB_STL_CLSS'
+                            'Combo_Info.CMB_STL_CLSS as CMB_STL_CLSS','Merchant_Info.MRCHNT_PHN as MRCHNT_PHN'
                         )
                         ->get();
         return response()->json($comboInfo);
@@ -87,7 +87,8 @@ class MenuController extends Controller
         }finally{
             DB::commit();
             Yunpian::notifyFrontDeskOrder($ORDR_ID,$yunpianInfo['HTL_NM'],$order['HTL_ID'],$transaction['RM_ID'],
-                $order['ORDR_TSTMP'],$order['CMB_ID'],$yunpianInfo['CMB_NM'],$order['AMNT']);
+                $order['ORDR_TSTMP'],$order['CMB_ID'],$yunpianInfo['CMB_NM'],$order['AMNT'],$transaction['CUS_PHN'],
+                $transaction['TSTMP'],$yunpianInfo['MRCHNT_ID'],$yunpianInfo['MRCHNT_NM'],$yunpianInfo['MRCHNT_PHN']);
             return response()->json('成功');
         }
     }

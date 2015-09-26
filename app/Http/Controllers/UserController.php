@@ -53,6 +53,7 @@ class UserController extends Controller{
             ->first(array('UserAccess.id as id', 'UserAccess.EMP_NM as EMP_NM',
                 'UserAccess.username as username','UserAccess.EMP_SYS_LVL as EMP_SYS_LVL',
                 'UserAccess.HTL_ID as HTL_ID','Hotel_Info.HTL_NM as HTL_NM','Hotel_Info.CRP_ID as CRP_ID'));
+        if($emp == null) return null;
         // add condition
         $userInfo = array(
             'EMP_ID'=>$emp->id,

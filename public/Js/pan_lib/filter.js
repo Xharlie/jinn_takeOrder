@@ -35,7 +35,7 @@ var filterAlert = {
         return null;
     }
     ,isChineseOrEnglishOrSpace: function(input) {
-        if(!(/^([\u4E00-\u9FA5]|[a-z]|[A-Z]|\s)+$/.test(input))) return "仅中英文";
+        if(!(/^([\u4E00-\u9FA5]|[a-z]|[A-Z]|\s)+$/.test(input)) && input != null && input != '') return "仅中英文";
         return null;
     }
 
@@ -75,7 +75,8 @@ var filterAlert = {
     ,
     isName : function(Name){
         var SName = Name.toString();
-        return (isNaN(SName)) && (SName.search(/\d+/) == -1 || !isNaN(SName.substring(SName.search(/\d+/))));
+        if (isNaN(SName) && (SName.search(/\d+/) == -1 || !isNaN(SName.substring(SName.search(/\d+/))))) return "仅名字";
+        return null;
     }  // only number shown at the trail is allowed, but not all numbers for every char
 }
 

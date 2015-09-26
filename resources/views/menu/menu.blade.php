@@ -96,6 +96,21 @@
                                         <label>数量</label>
                                         <input type="num" ng-model="cmbSelected.AMNT"  />
                                     </div>
+                                    <!-- 服务日期 -->
+                                    <div class="input-group input-customized">
+                                        <label>预约日期</label>
+                                        <input type="date" placeholder="01/31/1000" ng-model="cmbSelected.date"/>
+                                    </div>
+                                    <!-- 服务时间 -->
+                                    <div class="input-group input-customized">
+                                        <label>预约时间</label>
+                                        <input type="time" placeholder="15:30:30" ng-model="cmbSelected.time" />
+                                    </div>
+                                    <!-- 客人手机号 -->
+                                    <div class="input-group input-customized">
+                                        <label>客人手机号</label>
+                                        <input type="num"  ng-model="cmbSelected.CUS_PHN"  />
+                                    </div>
                                     <!-- 备注 -->
                                     <div class="input-group input-customized">
                                         <label>备注</label>

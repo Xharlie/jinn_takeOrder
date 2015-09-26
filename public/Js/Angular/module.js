@@ -11,6 +11,11 @@ app.config(['$routeProvider',function ($routeProvider){
             controller:'orderHistoryCTRL',
             templateUrl: '../resources/views/orderHistory/orderHistory.blade.php'
         })
+        .when('/greeting',
+        {
+            controller:'greetingCTRL',
+            templateUrl: '../resources/views/greeting/greeting.blade.php'
+        })
         .otherwise({redirectTo: '/menu'})
     }
 ])

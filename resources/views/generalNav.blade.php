@@ -12,6 +12,7 @@
             <!-- add inline style!!!!!!! -->
                 <li><a href="#/menu">服务菜单</a></li>
                 <li><a href="#/orderHistory">订单历史</a></li>
+                <li><a href="#/greeting">预达问候</a></li>
             </ul>
         </div>
     </div>

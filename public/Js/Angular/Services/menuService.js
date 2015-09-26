@@ -51,3 +51,16 @@ app.factory('orderHistoryFactory',function($http){
         }
     };
 });
+
+app.factory('greetingFactory',function($http){
+    return{
+        postGreetings: function(guestInfo,HTL_NM,HTL_ID){
+            return $http({
+                method: 'POST',
+                heasders: {'content-Type':'application/json'},
+                url: 'postGreetings',
+                data: {guestInfo:guestInfo,HTL_NM:HTL_NM,HTL_ID:HTL_ID.toString()}
+            })
+        }
+    };
+});
