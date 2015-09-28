@@ -56,7 +56,7 @@ app.controller('orderHistoryCTRL', function($scope,orderHistoryFactory) {
     /********************************************      initial function     *****************************************/
 
     function getOrderHistory(startDate,endDate,checkString){
-        orderHistoryFactory.getOrderHistory(2,
+        orderHistoryFactory.getOrderHistory(
             dateUtil.dateFormat(startDate),
             dateUtil.dateFormat(new Date(endDate.getTime()+86400000)))
         .success(function(data){
@@ -68,11 +68,11 @@ app.controller('orderHistoryCTRL', function($scope,orderHistoryFactory) {
                 ($scope.orders[i].AMNT * (parseFloat($scope.orders[i].CMB_TRANS_PRC) + parseFloat($scope.orders[i].CMB_PRC))):0;
                 $scope.orderPanel.sumACCT_ON_RM = $scope.orderPanel.sumACCT_ON_RM + $scope.orders[i].ACCT_ON_RM;
                 if($scope.orders[i].STATUS == '已下单'){
-                    $scope.orders[i].orderTakenTime = util.Limit((now - (new Date($scope.orders[i].ORDR_TSTMP).getTime()))/1000/60 );
+                    $scope.orders[i].orderTakenTime = util.Limit((now - (new Date($scope.orders[i].TSTMP).getTime()))/1000/60 );
                     $scope.orders[i].deliveryTime = 0;
                 }else if($scope.orders[i].STATUS == '已确认'){
                     $scope.orders[i].orderTakenTime = util.Limit(((new Date($scope.orders[i].ORDR_TAKEN_TSTMP).getTime())
-                                                                - (new Date($scope.orders[i].ORDR_TSTMP).getTime()))/1000/60 );
+                                                                - (new Date($scope.orders[i].TSTMP).getTime()))/1000/60 );
                     $scope.orders[i].deliveryTime = util.Limit((now - (new Date($scope.orders[i].ORDR_TAKEN_TSTMP).getTime()))/1000/60 );
                 }
             }
@@ -96,17 +96,18 @@ app.controller('orderHistoryCTRL', function($scope,orderHistoryFactory) {
             $scope.orderPanel.lastTimeOrders = util.array2Obj($scope.orders,'ORDR_ID','STATUS');
         });
     };
+
+
+    /********************************************     common initial setting     *****************************************/
+
+    $scope.orderPanel={startDate:yesterday,endDate:today,sumACCT_ON_RM:0,lastTimeOrders:null};
+    getOrderHistory($scope.orderPanel.startDate,$scope.orderPanel.endDate,null);
     setInterval(
         function(){
             getOrderHistory($scope.orderPanel.startDate,$scope.orderPanel.endDate,'compare');
         }
         ,30000
     );
-
-    /********************************************     common initial setting     *****************************************/
-    $scope.orderPanel={startDate:yesterday,endDate:today,sumACCT_ON_RM:0,lastTimeOrders:null};
-    getOrderHistory($scope.orderPanel.startDate,$scope.orderPanel.endDate,null);
-
     /************** ********************************** submit  ********************************** *************/
 
 

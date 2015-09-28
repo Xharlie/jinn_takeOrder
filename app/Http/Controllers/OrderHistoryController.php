@@ -25,10 +25,10 @@ class OrderHistoryController extends Controller
                                      ->on('Hotel_Info.HTL_ID', '=', 'OrderInfo.HTL_ID');
                             })
                             ->leftJoin('Combo_Info','Combo_Info.CMB_ID','=','OrderInfo.CMB_ID')
-                            ->whereRaw("OrderInfo.ORDR_TSTMP between '" . $ST_TM . "' and '". $END_TM."'")
+                            ->whereRaw("Transaction_Info.TSTMP between '" . $ST_TM . "' and '". $END_TM."'")
                             ->select('Combo_Info.CMB_NM as CMB_NM','Combo_Info.CMB_PRC as CMB_PRC',
                                 'Combo_Info.CMB_TRANS_PRC as CMB_TRANS_PRC','OrderInfo.ORDR_ID as ORDR_ID',
-                                'OrderInfo.TRN_ID as TRN_ID','OrderInfo.AMNT as AMNT','OrderInfo.ORDR_TSTMP as ORDR_TSTMP',
+                                'OrderInfo.TRN_ID as TRN_ID','OrderInfo.AMNT as AMNT','Transaction_Info.TSTMP as TSTMP',
                                 'OrderInfo.RMRK as RMRK','OrderInfo.RCVR_NM as RCVR_NM','OrderInfo.RCVR_PHN as RCVR_PHN',
                                 'OrderInfo.RCVR_ADDRSS as RCVR_ADDRSS','OrderInfo.HTL_ID as HTL_ID',
                                 'OrderInfo.RM_ID as RM_ID','OrderInfo.TKT_ID as TKT_ID','Hotel_Info.HTL_NM as HTL_NM',

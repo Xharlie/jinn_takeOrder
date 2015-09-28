@@ -83,7 +83,7 @@
                             <!--<td>{{order.TRN_ID}}</td>-->
                             <td>{{order.CMB_NM}}</td>
                             <td>{{order.AMNT}}</td>
-                            <td>{{order.ORDR_TSTMP}}</td>
+                            <td>{{order.TSTMP}}</td>
                             <td>{{order.RMRK}}</td>
                             <!--<td>{{order.RCVR_NM}}</td>-->
                             <!--<td>{{order.RCVR_PHN}}</td>-->
